@@ -1,7 +1,7 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="nav">
   <mat-toolbar-row>
-    <img class="logo-router logo" src="assets/logo.png" alt="Bettings" width="40" height="40">
-    <span class="logo-router">Bettings</span>
+    <img routerLink="/home" class="logo-router logo" src="assets/logo.png" alt="Bettings" width="40" height="40">
+    <span routerLink="/home" class="logo-router">Bettings</span>
     <span class="spacer"></span>
     <div *ngIf="!mobileQuery.matches">
       <button mat-flat-button color="primary" routerLink="/houses">Houses</button>
@@ -19,6 +19,6 @@
     <button mat-flat-button color="primary" routerLink="/bank">Bank</button>
   </mat-toolbar-row>
 </mat-toolbar>
-<main>
+<main class="main">
   <router-outlet></router-outlet>
 </main>

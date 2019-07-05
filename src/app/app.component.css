@@ -1,7 +1,21 @@
+.nav {
+  position: fixed;
+  top: 0;
+}
+
 .spacer {
   flex: 1 1 auto;
 }
 
 .logo {
   margin-right: 13px;
+}
+
+.logo-router {
+  cursor: pointer;
+  outline: none;
+}
+
+.main {
+  margin-top: 80px;
 }
