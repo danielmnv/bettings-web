@@ -1,3 +1,57 @@
+<div class="container">
+  <div class="row">
+    <h1 mat-dialog-title>Apuestas abiertas</h1>
+  </div>
+  <div class="row">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <b>México vs USA</b>
+          </mat-panel-title>
+          <mat-panel-description class="flex-container flex-around">
+            <span class="flex-child" matTooltip="Momio">-149</span>
+            <span class="flex-child" matTooltip="Monto">$100</span>
+            <span class="flex-child" matTooltip="Ganancia">$167</span>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <section class="flex-container flex-between">
+          <p class="flex-child">Se clasifica <b>México</b></p>
+          <p class="flex-child">07/07/2019 • 20:00</p>
+        </section>
+        <section class="flex-container flex-between">
+          <p class="flex-child">Play Do It</p>
+          <p class="flex-child">07/07/2019 • 17:23</p>
+        </section>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <b>Brasil vs Perú</b>
+          </mat-panel-title>
+          <mat-panel-description class="flex-container flex-around">
+            <span class="flex-child" matTooltip="Momio">-147</span>
+            <span class="flex-child" matTooltip="Monto">$100</span>
+            <span class="flex-child" matTooltip="Ganancia">$168</span>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <section class="flex-container flex-between">
+          <p class="flex-child">Hándicap asiático <b>Brasil (-1.25)</b></p>
+          <p class="flex-child">07/07/2019 • 15:00</p>
+        </section>
+        <section class="flex-container flex-between">
+          <p class="flex-child">Play Do It</p>
+          <p class="flex-child">07/07/2019 • 13:46</p>
+        </section>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+  </div>
+</div>
+
+<button mat-fab class="float-button"><mat-icon>add</mat-icon></button>
+<br><br>
 <button mat-raised-button (click)="signIn()">
   <img src="assets/google.png" alt="Google" width="20" height="20">
   Iniciar sesión con Google
