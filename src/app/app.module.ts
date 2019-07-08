@@ -31,6 +31,7 @@ import { AuthService } from './services/auth.service';
 
 // Environments
 import { environment } from 'src/environments/environment';
+import { NewBetComponent } from './components/new-bet/new-bet.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { environment } from 'src/environments/environment';
     HomeComponent,
     HistoryComponent,
     CapitalComponent,
-    BankComponent
+    BankComponent,
+    NewBetComponent
   ],
   imports: [
     BrowserModule,
