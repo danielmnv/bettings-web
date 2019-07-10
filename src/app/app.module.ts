@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // AngularFire
 import { AngularFireModule } from '@angular/fire';
@@ -12,6 +13,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 // Sweet Alert 2
 
 // Ngx LoadingBar
+
+// Ngx Material TimePicker
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 // Ng2 Charts
 
@@ -25,13 +29,16 @@ import { HomeComponent } from './components/home/home.component';
 import { HistoryComponent } from './components/history/history.component';
 import { CapitalComponent } from './components/capital/capital.component';
 import { BankComponent } from './components/bank/bank.component';
+import { NewBetComponent } from './components/new-bet/new-bet.component';
 
 // Services
 import { AuthService } from './services/auth.service';
 
+// Pipes
+import { GetProfitPipe } from './pipes/get-profit.pipe';
+
 // Environments
 import { environment } from 'src/environments/environment';
-import { NewBetComponent } from './components/new-bet/new-bet.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +48,8 @@ import { NewBetComponent } from './components/new-bet/new-bet.component';
     HistoryComponent,
     CapitalComponent,
     BankComponent,
-    NewBetComponent
+    NewBetComponent,
+    GetProfitPipe
   ],
   imports: [
     BrowserModule,
@@ -50,10 +58,16 @@ import { NewBetComponent } from './components/new-bet/new-bet.component';
     MaterialComponents,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxMaterialTimepickerModule
   ],
   providers: [
     AuthService
+  ],
+  entryComponents: [
+    NewBetComponent
   ],
   bootstrap: [AppComponent]
 })
