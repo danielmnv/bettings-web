@@ -1,8 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 body {
   padding: 0;
   margin: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
 .flex-container {
@@ -23,6 +25,22 @@ body {
   order: 0;
   flex: 0 1 auto;
   align-self: auto;
+}
+
+.timepicker__header {
+  background-color: #00796b !important;
+}
+
+.clock-face__clock-hand {
+  background-color: #00796b !important;
+}
+
+.clock-face__number>span.active {
+  background-color: #00796b !important;
+}
+
+button.timepicker-button {
+  color: #00796b !important;
 }
 
 .hide {
