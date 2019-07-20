@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { NewBetComponent } from '../new-bet/new-bet.component';
+import { BetService } from 'src/app/services/bet.service';
 
 @Component({
   selector: 'app-home',
@@ -10,12 +11,13 @@ import { NewBetComponent } from '../new-bet/new-bet.component';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private authService: AuthService, public dialog: MatDialog) { }
+  constructor(private authService: AuthService, public dialog: MatDialog, private betService: BetService) { }
 
   ngOnInit() {
+    this.betService.findBets("");
   }
 
-  signIn() {
+  signIn(): void {
     this.authService.signWithGoogle()
       .then(result => {
         console.log(result.user);
@@ -23,15 +25,9 @@ export class HomeComponent implements OnInit {
       .catch(error => console.log(error));
   }
 
-  addBet() {
-    const dialogRef = this.dialog.open(NewBetComponent, {
-      width: '500px',
-      // data: { name: this.name, animal: this.animal }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed' + result);
-      // this.animal = result;
+  addBet(): void {
+    this.dialog.open(NewBetComponent, {
+      width: '500px'
     });
   }
 
