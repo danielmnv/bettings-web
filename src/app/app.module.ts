@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // AngularFire
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFirestoreModule, AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 // Sweet Alert 2
 
@@ -33,6 +33,7 @@ import { NewBetComponent } from './components/new-bet/new-bet.component';
 
 // Services
 import { AuthService } from './services/auth.service';
+import { BetsService } from './services/bets.service';
 
 // Pipes
 import { GetProfitPipe } from './pipes/get-profit.pipe';
@@ -64,7 +65,9 @@ import { environment } from 'src/environments/environment';
     NgxMaterialTimepickerModule
   ],
   providers: [
-    AuthService
+    AngularFirestore,
+    AuthService,
+    BetsService
   ],
   entryComponents: [
     NewBetComponent
