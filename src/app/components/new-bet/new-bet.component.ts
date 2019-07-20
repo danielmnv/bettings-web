@@ -67,7 +67,7 @@ export class NewBetComponent implements OnInit {
     this.betService.addBet(newBet)
       .then(response => {
         if (response instanceof firestore.DocumentReference)
-          this.dialogRef.close(true);
+          this.dialogRef.close();
       });
 
     
