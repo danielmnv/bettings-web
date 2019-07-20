@@ -6,18 +6,31 @@
     <span class="spacer"></span>
     <div *ngIf="!mobileQuery.matches">
       <button mat-flat-button color="primary" routerLink="/houses">Houses</button>
-      <button mat-flat-button color="primary" routerLink="/history">History</button>
+      <button mat-flat-button color="primary" routerLink="/history">Record</button>
       <button mat-flat-button color="primary" routerLink="/capital">Capital</button>
       <button mat-flat-button color="primary" routerLink="/bank">Bank</button>
     </div>
-  </mat-toolbar-row>
-</mat-toolbar>
-<mat-toolbar color="primary" *ngIf="mobileQuery.matches">
-  <mat-toolbar-row>
-    <button mat-flat-button color="primary" routerLink="/houses">Houses</button>
-    <button mat-flat-button color="primary" routerLink="/history">History</button>
-    <button mat-flat-button color="primary" routerLink="/capital">Capital</button>
-    <button mat-flat-button color="primary" routerLink="/bank">Bank</button>
+    <button mat-icon-button *ngIf="mobileQuery.matches" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/houses">
+        <mat-icon>location_city</mat-icon>
+        <span>Houses</span>
+      </button>
+      <button mat-menu-item routerLink="/history">
+        <mat-icon>history</mat-icon>
+        <span>Record</span>
+      </button>
+      <button mat-menu-item routerLink="/capital">
+        <mat-icon>trending_up</mat-icon>
+        <span>Capital</span>
+      </button>
+      <button mat-menu-item routerLink="/bank">
+        <mat-icon>account_balance</mat-icon>
+        <span>Bank</span>
+      </button>
+    </mat-menu>
   </mat-toolbar-row>
 </mat-toolbar>
 <main class="main">
