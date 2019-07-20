@@ -13,6 +13,9 @@ import { AngularFirestoreModule, AngularFirestore, AngularFirestoreCollection } 
 // Sweet Alert 2
 
 // Ngx LoadingBar
+import { LoadingBarModule } from '@ngx-loading-bar/core';
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 
 // Ngx Material TimePicker
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
@@ -62,7 +65,10 @@ import { environment } from 'src/environments/environment';
     AngularFirestoreModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxMaterialTimepickerModule
+    NgxMaterialTimepickerModule,
+    LoadingBarModule,
+    LoadingBarRouterModule,
+    LoadingBarHttpClientModule
   ],
   providers: [
     AngularFirestore,
