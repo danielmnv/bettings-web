@@ -4,10 +4,8 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { GetProfitPipe } from 'src/app/pipes/get-profit.pipe';
 import { firestore } from 'firebase';
 import { Bet } from 'src/app/interfaces/bet';
-import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { splitAtColon } from '@angular/compiler/src/util';
-import Swal from 'sweetalert2';
+import { BetService } from 'src/app/services/bet.service';
 
 @Component({
   selector: 'app-new-bet',
@@ -21,9 +19,8 @@ export class NewBetComponent implements OnInit {
   private amount: number;
   private momioSign: boolean = true;
   private newBetForm: FormGroup;
-  private betCollection: AngularFirestoreCollection<Bet>
 
-  constructor(public dialogRef: MatDialogRef<NewBetComponent>, private formBuilder: FormBuilder, private pipeProfit: GetProfitPipe, private afs: AngularFirestore, private snack: MatSnackBar) {
+  constructor(public dialogRef: MatDialogRef<NewBetComponent>, private formBuilder: FormBuilder, private pipeProfit: GetProfitPipe, private betService: BetService) {
     // Bet form builder.
     this.newBetForm = this.formBuilder.group({
       sportCtrl: ['', Validators.required],
@@ -36,9 +33,6 @@ export class NewBetComponent implements OnInit {
       eventDateCtrl: ['', Validators.required],
       timeDateCtrl: ['', Validators.required]
     });
-
-    // Bets collection.
-    this.betCollection = this.afs.collection<Bet>('bets');
   }
 
   ngOnInit() {
@@ -53,14 +47,6 @@ export class NewBetComponent implements OnInit {
     // Add Hours and Seconds to the previous created date.
     date.setHours(+times[0]);
     date.setMinutes(+times[1]);
-
-    // Upload alert.
-    Swal.fire({
-      title: 'Guardando apuesta',
-      type: 'info',
-      allowOutsideClick: false
-    });
-    Swal.showLoading();
 
     // Set a new Bet object.
     let newBet: Bet = {
@@ -77,11 +63,14 @@ export class NewBetComponent implements OnInit {
       status: 1
     };
 
-    // Push object into Firebase.
-    this.betCollection.add(newBet)
-      .then(res => this.snack.open('Apuesta añadida', 'Cerrar', { duration: 8000 }))
-      .catch(err => this.snack.open(err, 'Cerrar', { duration: 8000 }))
-      .finally(() => Swal.close());
+    // Sent to Bet Service.
+    this.betService.addBet(newBet)
+      .then(response => {
+        if (response instanceof firestore.DocumentReference)
+          this.dialogRef.close(true);
+      });
+
+    
   }
 
 }
