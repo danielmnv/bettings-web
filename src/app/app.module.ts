@@ -33,7 +33,6 @@ import { NewBetComponent } from './components/new-bet/new-bet.component';
 
 // Services
 import { AuthService } from './services/auth.service';
-import { BetsService } from './services/bets.service';
 
 // Pipes
 import { GetProfitPipe } from './pipes/get-profit.pipe';
@@ -66,8 +65,7 @@ import { environment } from 'src/environments/environment';
   ],
   providers: [
     AngularFirestore,
-    AuthService,
-    BetsService
+    AuthService
   ],
   entryComponents: [
     NewBetComponent
