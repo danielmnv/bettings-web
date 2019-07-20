@@ -7,7 +7,6 @@ export interface Bet {
   team2: string,
   type: string,
   eventDate: firestore.Timestamp,
-  timeDate: number,
   createDate: firestore.Timestamp,
   momio: number,
   amount: number,
