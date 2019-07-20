@@ -65,7 +65,7 @@ export class NewBetComponent implements OnInit {
     // Set a new Bet object.
     let newBet: Bet = {
       sport: this.newBetForm.controls.sportCtrl.value,
-      fk_house: this.newBetForm.controls.houseCtrl.value,
+      fk_house: firestore().doc(`houses/${this.newBetForm.controls.houseCtrl.value}`),
       team1: this.newBetForm.controls.team1Ctrl.value,
       team2: this.newBetForm.controls.team2Ctrl.value,
       type: this.newBetForm.controls.typeCtrl.value,
