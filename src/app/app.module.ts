@@ -33,6 +33,7 @@ import { HistoryComponent } from './components/history/history.component';
 import { CapitalComponent } from './components/capital/capital.component';
 import { BankComponent } from './components/bank/bank.component';
 import { NewBetComponent } from './components/new-bet/new-bet.component';
+import { BetPanelComponent } from './components/bet-panel/bet-panel.component';
 
 // Services
 import { AuthService } from './services/auth.service';
@@ -53,7 +54,8 @@ import { environment } from 'src/environments/environment';
     CapitalComponent,
     BankComponent,
     NewBetComponent,
-    GetProfitPipe
+    GetProfitPipe,
+    BetPanelComponent
   ],
   imports: [
     BrowserModule,
