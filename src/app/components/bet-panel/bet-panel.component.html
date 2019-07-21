@@ -20,7 +20,7 @@
       {{ bet.eventDate.toDate() | date: 'short' }} <i class="far fa-calendar"></i></p>
   </section>
   <section class="flex-container flex-between">
-    <p class="flex-child">{{ bet.fk_house }}</p>
+    <p class="flex-child">{{ house | async }}</p>
     <p class="flex-child" matTooltip="Fecha de apuesta" matTooltipPosition="left">
       {{ bet.createDate.toDate() | date: 'short' }} <i class="far fa-calendar-check"></i></p>
   </section>
