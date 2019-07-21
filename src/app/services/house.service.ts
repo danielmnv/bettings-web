@@ -16,7 +16,7 @@ export class HouseService {
     this.houseCollection = this.afs.collection<House>('houses');
   }
 
-  async findNameHouse(reference: firestore.DocumentReference) {
+  async findHouseName(reference: firestore.DocumentReference) {
     return await reference.get()
       .then(doc => doc.data().name);
   }

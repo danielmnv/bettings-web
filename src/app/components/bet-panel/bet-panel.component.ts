@@ -16,7 +16,7 @@ export class BetPanelComponent implements OnInit {
   constructor(private houseService: HouseService) { }
 
   ngOnInit() {
-    this.house = this.houseService.findNameHouse(this.bet.fk_house);
+    this.house = this.houseService.findHouseName(this.bet.fk_house);
   }
 
 }
