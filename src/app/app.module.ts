@@ -41,6 +41,7 @@ import { BetService } from './services/bet.service';
 
 // Pipes
 import { GetProfitPipe } from './pipes/get-profit.pipe';
+import { SportTypePipe } from './pipes/sport-type.pipe';
 
 // Environments
 import { environment } from 'src/environments/environment';
@@ -55,7 +56,8 @@ import { environment } from 'src/environments/environment';
     BankComponent,
     NewBetComponent,
     GetProfitPipe,
-    BetPanelComponent
+    BetPanelComponent,
+    SportTypePipe
   ],
   imports: [
     BrowserModule,

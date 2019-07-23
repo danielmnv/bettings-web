@@ -1,27 +1,29 @@
 <mat-expansion-panel>
   <mat-expansion-panel-header>
-    <mat-panel-title class="col s12 m8">
-      <i class="fas fa-futbol"></i><b class="bet-title">{{ bet.team1 }} vs {{ bet.team2 }}</b>
+    <mat-panel-title class="col s12 m8 secondary">
+      <i [class]="bet.sport | sportType: 'icon'"></i><b class="bet-title">{{ bet.team1 }} vs {{ bet.team2 }}</b>
     </mat-panel-title>
     <mat-panel-description class="col s6 m4 flex-container flex-between hide-on-small-only">
-      <span class="flex-child" matTooltip="Momio">{{ (bet.momio) }}</span>
+      <span class="flex-child" matTooltip="Momio">{{ (bet.momio > 0)? '+' + bet.momio : bet.momio }}</span>
       <span class="flex-child" matTooltip="Monto">${{ bet.amount }}</span>
       <span class="flex-child" matTooltip="Ganancia">${{ bet.profit }}</span>
     </mat-panel-description>
   </mat-expansion-panel-header>
   <section class="flex-container flex-between hide-on-med-and-up info-mobile">
-    <span class="flex-child" matTooltip="Momio">{{ (bet.momio) }}</span>
+    <span class="flex-child" matTooltip="Momio">{{ (bet.momio > 0)? '+' + bet.momio : bet.momio }}</span>
     <span class="flex-child" matTooltip="Monto">${{ bet.amount }}</span>
     <span class="flex-child" matTooltip="Ganancia">${{ bet.profit }}</span>
   </section>
-  <section class="flex-container flex-between">
-    <p class="flex-child">{{ bet.type }}</p>
-    <p class="flex-child" matTooltip="Fecha de evento" matTooltipPosition="left">
-      {{ bet.eventDate.toDate() | date: 'short' }} <i class="far fa-calendar"></i></p>
-  </section>
-  <section class="flex-container flex-between">
-    <p class="flex-child">{{ house | async }}</p>
-    <p class="flex-child" matTooltip="Fecha de apuesta" matTooltipPosition="left">
-      {{ bet.createDate.toDate() | date: 'short' }} <i class="far fa-calendar-check"></i></p>
-  </section>
+  <div class="">
+    <section class="flex-container flex-between">
+      <p class="flex-child">{{ bet.type }}</p>
+      <p class="flex-child" matTooltip="Fecha de evento" matTooltipPosition="left">
+        {{ bet.eventDate.toDate() | date: 'short' }} <i class="far fa-calendar"></i></p>
+    </section>
+    <section class="flex-container flex-between">
+      <p class="flex-child">{{ house | async }}</p>
+      <p class="flex-child" matTooltip="Fecha de apuesta" matTooltipPosition="left">
+        {{ bet.createDate.toDate() | date: 'short' }} <i class="far fa-calendar-check"></i></p>
+    </section>
+  </div>
 </mat-expansion-panel>

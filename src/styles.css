@@ -7,6 +7,12 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.primary { color: #009688; }
+.bg-primary { background-color: #009688; }
+
+.secondary { color: darkblue; }
+.bg-secondary { background-color: darkblue; }
+
 .flex-container {
   display: flex;
   flex-direction: row;
