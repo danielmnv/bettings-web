@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HouseService } from 'src/app/services/house.service';
 import { Bet } from 'src/app/interfaces/bet';
-import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { DefineBetComponent } from '../define-bet/define-bet.component';
 
 @Component({
   selector: 'app-bet-panel',
@@ -13,10 +14,20 @@ export class BetPanelComponent implements OnInit {
   @Input() bet: Bet;
   house: Promise<string>;
 
-  constructor(private houseService: HouseService) { }
+  constructor(private houseService: HouseService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.house = this.houseService.findHouseName(this.bet.fk_house);
+  }
+
+  editBet() {
+
+  }
+
+  defineBet() {
+    this.dialog.open(DefineBetComponent, {
+      width: '500px'
+    });
   }
 
 }

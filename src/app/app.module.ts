@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // AngularFire
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFirestoreModule, AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
 
 // Sweet Alert 2
 
@@ -34,6 +34,7 @@ import { CapitalComponent } from './components/capital/capital.component';
 import { BankComponent } from './components/bank/bank.component';
 import { NewBetComponent } from './components/new-bet/new-bet.component';
 import { BetPanelComponent } from './components/bet-panel/bet-panel.component';
+import { DefineBetComponent } from './components/define-bet/define-bet.component';
 
 // Services
 import { AuthService } from './services/auth.service';
@@ -57,7 +58,8 @@ import { environment } from 'src/environments/environment';
     NewBetComponent,
     GetProfitPipe,
     BetPanelComponent,
-    SportTypePipe
+    SportTypePipe,
+    DefineBetComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +82,8 @@ import { environment } from 'src/environments/environment';
     BetService
   ],
   entryComponents: [
-    NewBetComponent
+    NewBetComponent,
+    DefineBetComponent
   ],
   bootstrap: [AppComponent]
 })
