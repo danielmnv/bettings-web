@@ -4,6 +4,7 @@ import { Bet } from '../interfaces/bet';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,8 @@ export class BetService {
   }
 
   findBets(_uid: string): void {
-    // Store bets data on items.
-    this.items = this.betCollection.valueChanges();
+    // Store bets data on items and sort.
+    this.items = this.betCollection.valueChanges().pipe(map((bets: Bet[]) => bets.sort((betA, betB) => (betA.createDate < betB.createDate) ? 1 : -1)));
   }
 
   addBet(_bet: Bet): Promise<any> {
@@ -43,5 +44,23 @@ export class BetService {
         return err;
       })
       .finally(() => Swal.close());
+  }
+
+  sortBets(sorter: string): void {
+    // Sort array with attribute.
+    this.items = this.items.pipe(map((bets: Bet[]) => bets.sort((betA, betB) => {
+      switch (sorter) {
+        case 'momio':
+          return (betB.momio - betA.momio);
+        case 'amount':
+          return (betB.amount - betA.amount);
+        case 'profit':
+          return (betB.profit - betA.profit);
+        case 'eventDate':
+          return (betA.eventDate < betB.eventDate) ? 1 : -1;
+        default:
+          return (betA.createDate < betB.createDate) ? 1 : -1;
+      }
+    })));
   }
 }

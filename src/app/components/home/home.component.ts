@@ -31,4 +31,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  setSorter(sorter: string): void {
+    this.betService.sortBets(sorter);
+  }
+
 }

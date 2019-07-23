@@ -1,6 +1,31 @@
 <div class="container">
-  <div class="row">
-    <h1 mat-dialog-title class="animated bounceIn">Apuestas abiertas</h1>
+  <div class="flex-container flex-between">
+    <h1 mat-dialog-title class="flex-child animated bounceIn">Apuestas abiertas</h1>
+    <div class="flex-child">
+      <button mat-icon-button [matMenuTriggerFor]="sortMenu" color="primary" class="sorter" matTooltip="Ordenar" matTooltipPosition="left"><mat-icon class="fas fa-sort-amount-down"></mat-icon></button>
+      <mat-menu #sortMenu="matMenu">
+        <button mat-menu-item (click)="setSorter('momio')">
+          <mat-icon class="fas fa-percentage"></mat-icon>
+          <span>Momio</span>
+        </button>
+        <button mat-menu-item (click)="setSorter('amount')">
+          <mat-icon class="fas fa-coins"></mat-icon>
+          <span>Monto</span>
+        </button>
+        <button mat-menu-item (click)="setSorter('profit')">
+          <mat-icon class="fas fa-hand-holding-usd"></mat-icon>
+          <span>Ganancia</span>
+        </button>
+        <button mat-menu-item (click)="setSorter('eventDate')">
+          <mat-icon class="far fa-calendar"></mat-icon>
+          <span>Fecha de evento</span>
+        </button>
+        <button mat-menu-item (click)="setSorter('default')">
+          <mat-icon class="far fa-calendar-check"></mat-icon>
+          <span>Fecha de creación</span>
+        </button>
+      </mat-menu>
+    </div>
   </div>
   <div class="row">
     <mat-accordion *ngIf="betService.items | async; let bets">
