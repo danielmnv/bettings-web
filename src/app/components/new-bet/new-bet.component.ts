@@ -59,7 +59,7 @@ export class NewBetComponent implements OnInit {
       createDate: firestore.Timestamp.fromDate(new Date()),
       momio: (this.momioSign)? this.momio : -this.momio,
       amount: this.amount,
-      profit: this.pipeProfit.transform(this.momioSign, this.momio, this.amount),
+      profit: parseFloat(this.pipeProfit.transform(this.momioSign, this.momio, this.amount)),
       status: 1
     };
 
