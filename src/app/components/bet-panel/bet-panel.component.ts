@@ -26,7 +26,8 @@ export class BetPanelComponent implements OnInit {
 
   defineBet() {
     this.dialog.open(DefineBetComponent, {
-      width: '500px'
+      width: '400px',
+      data: this.bet
     });
   }
 

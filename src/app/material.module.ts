@@ -15,10 +15,11 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
-  imports: [ MatButtonModule, MatToolbarModule, MatIconModule,MatTabsModule, MatCardModule, MatExpansionModule, MatDialogModule, MatTooltipModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MatSnackBarModule, MatMenuModule, MatDividerModule ],
-  exports: [ MatButtonModule, MatToolbarModule, MatIconModule,MatTabsModule, MatCardModule, MatExpansionModule, MatDialogModule, MatTooltipModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MatSnackBarModule, MatMenuModule, MatDividerModule ],
+  imports: [ MatButtonModule, MatToolbarModule, MatIconModule,MatTabsModule, MatCardModule, MatExpansionModule, MatDialogModule, MatTooltipModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MatSnackBarModule, MatMenuModule, MatDividerModule, MatRadioModule ],
+  exports: [ MatButtonModule, MatToolbarModule, MatIconModule,MatTabsModule, MatCardModule, MatExpansionModule, MatDialogModule, MatTooltipModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MatSnackBarModule, MatMenuModule, MatDividerModule, MatRadioModule ],
   providers: [ MatDatepickerModule ]
 })
 export class MaterialComponents { }

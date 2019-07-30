@@ -1,1 +1,24 @@
-<p>define-bet works!</p>
+<h1 mat-dialog-title>Determinar apuesta</h1>
+<form>
+  <div class="row">
+    <div class="col s12">
+      <mat-radio-group name="betStatus" [(ngModel)]="temp_status" (change)="setProfit()">
+        <div class="flex-container flex-between">
+          <mat-radio-button value="2" [checked]="true"><mat-icon style="color: teal">done</mat-icon></mat-radio-button>
+          <mat-radio-button value="3"><mat-icon style="color: rgb(202, 172, 3)">not_interested</mat-icon></mat-radio-button>
+          <mat-radio-button value="4"><mat-icon style="color: crimson">clear</mat-icon></mat-radio-button>
+          <mat-radio-button value="8"><mat-icon style="color: black">undo</mat-icon></mat-radio-button>
+        </div><br>
+        <div class="flex-container flex-between">
+            <mat-radio-button value="5"><mat-icon style="color: teal">done</mat-icon><mat-icon style="color: rgb(202, 172, 3)">not_interested</mat-icon></mat-radio-button>
+            <mat-radio-button value="6"><mat-icon style="color: teal">done</mat-icon><mat-icon style="color: crimson">clear</mat-icon></mat-radio-button>
+            <mat-radio-button value="7"><mat-icon style="color: rgb(202, 172, 3)">not_interested</mat-icon><mat-icon style="color: crimson">clear</mat-icon></mat-radio-button>
+        </div>
+      </mat-radio-group>
+      <mat-form-field>
+        <mat-label>Ganancia</mat-label>
+        <input matInput name="betProfit" [(ngModel)]="temp_profit" [readonly]="temp_status != 8">
+      </mat-form-field>
+    </div>
+  </div>
+</form>
