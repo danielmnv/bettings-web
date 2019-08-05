@@ -1,24 +1,33 @@
 <h1 mat-dialog-title>Determinar apuesta</h1>
-<form>
+<form #updateBetForm="ngForm" (ngSubmit)="updateBet(updateBetForm)" novalidate>
   <div class="row">
     <div class="col s12">
-      <mat-radio-group name="betStatus" [(ngModel)]="temp_status" (change)="setProfit()">
+      <mat-radio-group name="bStat" #bStat [(ngModel)]="temp_status" (change)="setProfit()" required>
         <div class="flex-container flex-between">
-          <mat-radio-button value="2" [checked]="true"><mat-icon style="color: teal">done</mat-icon></mat-radio-button>
-          <mat-radio-button value="3"><mat-icon style="color: rgb(202, 172, 3)">not_interested</mat-icon></mat-radio-button>
-          <mat-radio-button value="4"><mat-icon style="color: crimson">clear</mat-icon></mat-radio-button>
-          <mat-radio-button value="8"><mat-icon style="color: black">undo</mat-icon></mat-radio-button>
+          <mat-radio-button value="2" [checked]="true"><mat-icon class="done">done</mat-icon></mat-radio-button>
+          <mat-radio-button value="3"><mat-icon class="push">not_interested</mat-icon></mat-radio-button>
+          <mat-radio-button value="4"><mat-icon class="lost">clear</mat-icon></mat-radio-button>
+          <mat-radio-button value="8"><mat-icon class="close">undo</mat-icon></mat-radio-button>
         </div><br>
         <div class="flex-container flex-between">
-            <mat-radio-button value="5"><mat-icon style="color: teal">done</mat-icon><mat-icon style="color: rgb(202, 172, 3)">not_interested</mat-icon></mat-radio-button>
-            <mat-radio-button value="6"><mat-icon style="color: teal">done</mat-icon><mat-icon style="color: crimson">clear</mat-icon></mat-radio-button>
-            <mat-radio-button value="7"><mat-icon style="color: rgb(202, 172, 3)">not_interested</mat-icon><mat-icon style="color: crimson">clear</mat-icon></mat-radio-button>
+            <mat-radio-button value="5"><mat-icon class="done">done</mat-icon><mat-icon class="push">not_interested</mat-icon></mat-radio-button>
+            <mat-radio-button value="6"><mat-icon class="done">done</mat-icon><mat-icon class="lost">clear</mat-icon></mat-radio-button>
+            <mat-radio-button value="7"><mat-icon class="push">not_interested</mat-icon><mat-icon class="lost">clear</mat-icon></mat-radio-button>
         </div>
+        <!-- <mat-error *ngIf="bStat.valid">Seleccione el tipo de determinación</mat-error> -->
       </mat-radio-group>
-      <mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field class="col s12 input-profit">
         <mat-label>Ganancia</mat-label>
-        <input matInput name="betProfit" [(ngModel)]="temp_profit" [readonly]="temp_status != 8">
+        <span matPrefix>$ &nbsp;</span>
+        <input matInput name="bProf" #bProf type="number" [(ngModel)]="temp_profit" [readonly]="temp_status != 8" required>
+        <mat-icon matSuffix *ngIf="temp_status == 8">edit</mat-icon>
+        <mat-error *ngIf="!bProf.valid">Ingrese la cantidad recuperada</mat-error>
       </mat-form-field>
+    </div>
+    <div class="row">
+      <button class="col s12" mat-raised-button color="accent" type="submit" [disabled]="!updateBetForm.valid">Set</button>
     </div>
   </div>
 </form>

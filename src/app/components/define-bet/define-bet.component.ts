@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ElementRef, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Bet } from 'src/app/interfaces/bet';
 
@@ -11,6 +11,7 @@ export class DefineBetComponent implements OnInit {
 
   private temp_status: string;
   private temp_profit: number;
+  @ViewChild('bProf', { static: true }) profitField: ElementRef;
 
   constructor(public dialogRef: MatDialogRef<DefineBetComponent>, @Inject(MAT_DIALOG_DATA) public bet: Bet) {
     bet.status = 2;
@@ -43,6 +44,7 @@ export class DefineBetComponent implements OnInit {
         break;
       case 8:
         this.temp_profit = null;
+        this.profitField.nativeElement.focus();
       default:
         break;
     }

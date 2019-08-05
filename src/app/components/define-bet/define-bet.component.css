@@ -3,3 +3,10 @@ mat-radio-button {
   padding: 0.3rem;
   border-radius: 8px;
 }
+
+.done { color: teal; }
+.push { color: rgb(202, 172, 3); }
+.lost { color: crimson; }
+.close { color: black; }
+
+.input-profit { margin-top: 1.5rem; }
