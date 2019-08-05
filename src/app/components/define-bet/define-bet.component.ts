@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, ElementRef, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Bet } from 'src/app/interfaces/bet';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-define-bet',
@@ -14,8 +15,7 @@ export class DefineBetComponent implements OnInit {
   @ViewChild('bProf', { static: true }) profitField: ElementRef;
 
   constructor(public dialogRef: MatDialogRef<DefineBetComponent>, @Inject(MAT_DIALOG_DATA) public bet: Bet) {
-    bet.status = 2;
-    this.temp_status = bet.status.toString();
+    this.temp_status = "2";
     this.temp_profit = bet.profit;
   }
 
@@ -48,6 +48,10 @@ export class DefineBetComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  updateBet(form: NgForm) {
+    console.log(form);
   }
 
 }

@@ -11,6 +11,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
 
 // Sweet Alert 2
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 // Ngx LoadingBar
 import { LoadingBarModule } from '@ngx-loading-bar/core';
@@ -74,7 +75,8 @@ import { environment } from 'src/environments/environment';
     NgxMaterialTimepickerModule,
     LoadingBarModule,
     LoadingBarRouterModule,
-    LoadingBarHttpClientModule
+    LoadingBarHttpClientModule,
+    SweetAlert2Module.forRoot()
   ],
   providers: [
     AngularFirestore,

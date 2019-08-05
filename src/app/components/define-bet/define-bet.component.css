@@ -10,3 +10,11 @@ mat-radio-button {
 .close { color: black; }
 
 .input-profit { margin-top: 1.5rem; }
+button[type=submit] { width: 100%; }
+
+.subtitle-type {
+  padding-bottom: 1rem;
+  color: gray;
+}
+
+.close-button { color: gray; }
