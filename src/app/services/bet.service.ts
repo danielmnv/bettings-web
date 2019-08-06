@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Bet } from '../interfaces/bet';
+import { Bet, BetId } from '../interfaces/bet';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
 import { Observable } from 'rxjs';
@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 })
 export class BetService {
 
-  public items: Observable<Bet []>;
+  public items: Observable<BetId []>;
   private betCollection: AngularFirestoreCollection<Bet>;
 
   constructor(private afs: AngularFirestore, private snack: MatSnackBar) {
@@ -21,7 +21,14 @@ export class BetService {
 
   findBets(_uid: string): void {
     // Store bets data on items and sort.
-    this.items = this.betCollection.valueChanges().pipe(map((bets: Bet[]) => bets.sort((betA, betB) => (betA.createDate < betB.createDate) ? 1 : -1)));
+    this.items = this.betCollection.snapshotChanges().pipe(map(
+      actions => actions.map(a => {
+        const data = a.payload.doc.data() as Bet;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      })
+      .sort((betA: Bet, betB: Bet) => (betA.createDate < betB.createDate) ? 1 : -1)
+    ));
   }
 
   addBet(_bet: Bet): Promise<any> {
@@ -48,7 +55,7 @@ export class BetService {
 
   sortBets(sorter: string): void {
     // Sort array with attribute.
-    this.items = this.items.pipe(map((bets: Bet[]) => bets.sort((betA, betB) => {
+    this.items = this.items.pipe(map((bets: BetId[]) => bets.sort((betA, betB) => {
       switch (sorter) {
         case 'momio':
           return (betB.momio - betA.momio);

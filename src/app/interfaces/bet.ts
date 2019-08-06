@@ -13,3 +13,5 @@ export interface Bet {
   profit: number,
   status: number
 }
+
+export interface BetId extends Bet { id: string }
