@@ -29,8 +29,8 @@
   </div>
   <div class="row">
     <mat-accordion *ngIf="betService.items | async; let bets">
-      <article *ngFor="let bet of bets" class="animated fadeInUp">
-        <app-bet-panel [bet]="bet"></app-bet-panel>
+      <article *ngFor="let bet of bets" class="">
+        <app-bet-panel *ngIf="bet.status == 1" [bet]="bet"></app-bet-panel>
       </article>
     </mat-accordion>
 

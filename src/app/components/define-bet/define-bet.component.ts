@@ -5,11 +5,13 @@ import { NgForm } from '@angular/forms';
 import { BetService } from 'src/app/services/bet.service';
 import Swal from 'sweetalert2';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { GetProfitPipe } from 'src/app/pipes/get-profit.pipe';
 
 @Component({
   selector: 'app-define-bet',
   templateUrl: './define-bet.component.html',
-  styleUrls: ['./define-bet.component.css']
+  styleUrls: ['./define-bet.component.css'],
+  providers: [ GetProfitPipe ]
 })
 export class DefineBetComponent implements OnInit {
 
@@ -17,7 +19,7 @@ export class DefineBetComponent implements OnInit {
   private temp_profit: number;
   @ViewChild('bProf', { static: true }) profitField: ElementRef;
 
-  constructor(public dialogRef: MatDialogRef<DefineBetComponent>, @Inject(MAT_DIALOG_DATA) public bet: BetId, private betService: BetService, private snack: MatSnackBar) {
+  constructor(public dialogRef: MatDialogRef<DefineBetComponent>, @Inject(MAT_DIALOG_DATA) public bet: BetId, private pipeProfit: GetProfitPipe, private betService: BetService, private snack: MatSnackBar) {
     this.temp_status = "2";
     this.temp_profit = bet.profit;
   }
@@ -67,7 +69,9 @@ export class DefineBetComponent implements OnInit {
         .then(() => {
           let snackRef = this.snack.open('Apuesta definida', 'Deshacer', { duration: 10000 });
           this.dialogRef.close();
-          snackRef.onAction().subscribe(() => console.log('deshacer'));
+          snackRef.onAction().subscribe(() => {
+            this.betService.updateBet(this.bet.id, 1, parseFloat(this.pipeProfit.transform(this.bet.momio >= 0, Math.abs(this.bet.momio), this.bet.amount)));
+          });
         })
         .catch(() => this.snack.open('¡Ocurrió un error!', 'Cerrar', { duration: 8000 }))
         .finally(() => Swal.close());
