@@ -12,6 +12,7 @@ import { map } from 'rxjs/operators';
 export class BetService {
 
   public items: Observable<BetId []>;
+  private item: Observable<Bet>;
   private betCollection: AngularFirestoreCollection<Bet>;
 
   constructor(private afs: AngularFirestore, private snack: MatSnackBar) {
@@ -51,6 +52,11 @@ export class BetService {
         return err;
       })
       .finally(() => Swal.close());
+  }
+
+  updateBet(_doc: string, _status: number, _profit: number): Promise<void> {
+    // Update object into Firebase.
+    return this.betCollection.doc(_doc).update({ status: _status, profit: _profit});
   }
 
   sortBets(sorter: string): void {

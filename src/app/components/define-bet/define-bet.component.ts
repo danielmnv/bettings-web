@@ -1,7 +1,10 @@
 import { Component, OnInit, Inject, ElementRef, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Bet } from 'src/app/interfaces/bet';
+import { BetId } from 'src/app/interfaces/bet';
 import { NgForm } from '@angular/forms';
+import { BetService } from 'src/app/services/bet.service';
+import Swal from 'sweetalert2';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-define-bet',
@@ -14,7 +17,7 @@ export class DefineBetComponent implements OnInit {
   private temp_profit: number;
   @ViewChild('bProf', { static: true }) profitField: ElementRef;
 
-  constructor(public dialogRef: MatDialogRef<DefineBetComponent>, @Inject(MAT_DIALOG_DATA) public bet: Bet) {
+  constructor(public dialogRef: MatDialogRef<DefineBetComponent>, @Inject(MAT_DIALOG_DATA) public bet: BetId, private betService: BetService, private snack: MatSnackBar) {
     this.temp_status = "2";
     this.temp_profit = bet.profit;
   }
@@ -51,7 +54,24 @@ export class DefineBetComponent implements OnInit {
   }
 
   updateBet(form: NgForm) {
-    console.log(form);
+    if (form.valid) {
+      // Upload alert.
+      Swal.fire({
+        title: 'Determinando apuesta',
+        type: 'info',
+        allowOutsideClick: false
+      });
+      Swal.showLoading();
+
+      this.betService.updateBet(this.bet.id, parseInt(this.temp_status), this.temp_profit)
+        .then(() => {
+          let snackRef = this.snack.open('Apuesta definida', 'Deshacer', { duration: 10000 });
+          this.dialogRef.close();
+          snackRef.onAction().subscribe(() => console.log('deshacer'));
+        })
+        .catch(() => this.snack.open('¡Ocurrió un error!', 'Cerrar', { duration: 8000 }))
+        .finally(() => Swal.close());
+    }
   }
 
 }
