@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 
 // Sweet Alert 2
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
@@ -23,8 +24,6 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 // Ng2 Charts
 
-// Animate
-
 // Components
 import { AppComponent } from './app.component';
 import { MaterialComponents } from './material.module';
@@ -36,6 +35,7 @@ import { BankComponent } from './components/bank/bank.component';
 import { NewBetComponent } from './components/new-bet/new-bet.component';
 import { BetPanelComponent } from './components/bet-panel/bet-panel.component';
 import { DefineBetComponent } from './components/define-bet/define-bet.component';
+import { LoginComponent } from './components/login/login.component';
 
 // Services
 import { AuthService } from './services/auth.service';
@@ -60,7 +60,8 @@ import { environment } from 'src/environments/environment';
     GetProfitPipe,
     BetPanelComponent,
     SportTypePipe,
-    DefineBetComponent
+    DefineBetComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -80,6 +81,7 @@ import { environment } from 'src/environments/environment';
   ],
   providers: [
     AngularFirestore,
+    AngularFireAuthGuard,
     AuthService,
     BetService
   ],
