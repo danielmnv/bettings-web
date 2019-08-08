@@ -11,7 +11,8 @@ export interface Bet {
   momio: number,
   amount: number,
   profit: number,
-  status: number
+  status: number,
+  uid?: string
 }
 
 export interface BetId extends Bet { id: string }

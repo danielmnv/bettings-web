@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import Swal from 'sweetalert2';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class BetService {
   private item: Observable<Bet>;
   private betCollection: AngularFirestoreCollection<Bet>;
 
-  constructor(private afs: AngularFirestore, private snack: MatSnackBar) {
+  constructor(private authService: AuthService, private afs: AngularFirestore, private snack: MatSnackBar) {
     // Get Bets Collection.
     this.betCollection = this.afs.collection<Bet>('bets');
   }
@@ -32,7 +33,7 @@ export class BetService {
     ));
   }
 
-  addBet(_bet: Bet): Promise<any> {
+  async addBet(_bet: Bet): Promise<any> {
     // Upload alert.
     Swal.fire({
       title: 'Guardando apuesta',
@@ -40,6 +41,9 @@ export class BetService {
       allowOutsideClick: false
     });
     Swal.showLoading();
+
+    // Get the current user with an observable.
+    await this.authService.currentUser.subscribe(user => _bet.uid = user.uid);
 
     // Push object into Firebase. Return a DocumentReference if true.
     return this.betCollection.add(_bet)
