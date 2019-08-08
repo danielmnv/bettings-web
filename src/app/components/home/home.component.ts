@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   constructor(private authService: AuthService, public dialog: MatDialog, private betService: BetService) { }
 
   ngOnInit() {
-    this.betService.findBets("");
+    this.betService.findBets();
   }
 
   signIn(): void {

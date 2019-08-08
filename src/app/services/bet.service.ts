@@ -17,11 +17,13 @@ export class BetService {
   private betCollection: AngularFirestoreCollection<Bet>;
 
   constructor(private authService: AuthService, private afs: AngularFirestore, private snack: MatSnackBar) {
-    // Get Bets Collection.
-    this.betCollection = this.afs.collection<Bet>('bets');
+    // Get User Bets Collection.
+    this.authService.currentUser.subscribe(user => {
+      this.betCollection = this.afs.collection<Bet>('bets', ref => ref.where('uid', '==', user.uid));
+    });
   }
 
-  findBets(_uid: string): void {
+  findBets(): void {
     // Store bets data on items and sort.
     this.items = this.betCollection.snapshotChanges().pipe(map(
       actions => actions.map(a => {
