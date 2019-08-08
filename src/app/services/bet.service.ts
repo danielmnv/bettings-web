@@ -60,6 +60,16 @@ export class BetService {
       .finally(() => Swal.close());
   }
 
+  removeBet(_doc: string): Promise<void> {
+    // Remobe object from firebase.
+    return this.betCollection.doc(_doc).delete();
+  }
+
+  recoveryBet(_doc: string, _bet: Bet): Promise<void> {
+    // Recovery the bet object, push into firebase with same id.
+    return this.betCollection.doc(_doc).set(_bet);
+  }
+
   updateBet(_doc: string, _status: number, _profit: number): Promise<void> {
     // Update object into Firebase.
     return this.betCollection.doc(_doc).update({ status: _status, profit: _profit});

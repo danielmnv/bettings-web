@@ -27,8 +27,18 @@
     </section>
     <mat-divider></mat-divider><br>
     <section align="end" class="button-actions">
-      <button mat-flat-button color="primary">Editar <mat-icon>edit</mat-icon></button>
-      <button mat-flat-button color="accent" (click)="defineBet()">Determinar <mat-icon>assignment_turned_in</mat-icon></button>
+      <button mat-icon-button color="accent" (click)="defineBet()"><mat-icon>assignment_turned_in</mat-icon></button>
+      <button mat-icon-button color="primary"><mat-icon>edit</mat-icon></button>
+      <button mat-icon-button color="warn" [swal]="deleteSwal"><mat-icon>delete</mat-icon></button>
+      <swal #deleteSwal
+        type="question"
+        title="¿Desea eliminar {{ bet.team1 }} vs {{ bet.team2 }}?"
+        text="{{bet.type}}"
+        showCancelButton="true"
+        focusCancel="true"
+        confirmButtonColor="#f44336"
+        (confirm)="deleteBet()">
+      </swal>
     </section>
   </div>
 </mat-expansion-panel>
